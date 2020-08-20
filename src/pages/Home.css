@@ -9,8 +9,16 @@
     display: flex;
     padding: 20px 30px;
     justify-content: space-between;
+    
+   align-items: center;
+}
+
+.home__header a{
+
     text-decoration: inherit;
     color: rgba(0, 0, 0, 0.87);
+
+    margin-right: 20px;
     font-size: 15px;
 
 }
@@ -29,5 +37,19 @@
 
 .home__headerRight > .MuiSvgIcon-root{
     margin-right: 10px;
+}
+
+.home__body{
+    flex: 1;
+    display: flex;
+    margin-top: 10%;
+    flex-direction: column;
+    
+}
+
+.home__body > img{
+    object-fit: contain;
+    height: 100px;
+
 }
 
