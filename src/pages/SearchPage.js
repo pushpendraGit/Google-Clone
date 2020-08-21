@@ -12,7 +12,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useStateValue } from "../StateProvider";
 import "./SearchPage.css";
 import useGoogleSearch from "../useGoogleSearch";
-//import Responce from "../responce";
+import Responce from "../responce";
 import { Link } from "@material-ui/core";
 import "./SearchPage.css";
 import Search from "./Search";
@@ -26,7 +26,7 @@ function SearchPage(props) {
 
   //this is for dummy use
 
-  const data = Response;
+  const data = Responce;
 
   //console.log("Your all data", data);
 
@@ -85,7 +85,7 @@ function SearchPage(props) {
           </div>
         </div>
       </div>
-      {data !== null && term != null  && (
+      {true  && (
         <div className="searchPage__result">
           <p className="searchPage__resultCount">
             About {data?.searchInformation.formattedTotalResults} results (
