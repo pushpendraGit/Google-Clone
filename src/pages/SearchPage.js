@@ -20,7 +20,13 @@ import Search from "./Search";
 function SearchPage(props) {
   const [{ term }, dispatch] = useStateValue();
 
-  const { data } = useGoogleSearch(term);
+  //for real use
+
+  // const { data } = useGoogleSearch(term);
+
+  //this is for dummy use
+
+  const data = Response;
 
   //console.log("Your all data", data);
 
