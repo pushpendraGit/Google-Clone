@@ -79,7 +79,7 @@ function SearchPage(props) {
           </div>
         </div>
       </div>
-      {data !== null && term != null && (
+      {data !== null && term != null  && (
         <div className="searchPage__result">
           <p className="searchPage__resultCount">
             About {data?.searchInformation.formattedTotalResults} results (
