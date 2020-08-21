@@ -12,22 +12,17 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useStateValue } from "../StateProvider";
 import "./SearchPage.css";
 import useGoogleSearch from "../useGoogleSearch";
-import Responce from "../responce";
+//import Responce from "../responce";
 import { Link } from "@material-ui/core";
 import "./SearchPage.css";
 import Search from "./Search";
 
 function SearchPage(props) {
   const [{ term }, dispatch] = useStateValue();
-  /*
-  //const {data}  = useGoogleSearch(term);  //this is for live api code
 
-  //console.log('Your all data is=====>', data);
-  */
+  const { data } = useGoogleSearch(term);
 
-  const data = Responce;
-
-  console.log(data);
+  //console.log("Your all data", data);
 
   return (
     <div className="searchPage">
@@ -84,7 +79,33 @@ function SearchPage(props) {
           </div>
         </div>
       </div>
-      <div className="searchPage__reasults"></div>
+      {data !== null && term != null && (
+        <div className="searchPage__result">
+          <p className="searchPage__resultCount">
+            About {data?.searchInformation.formattedTotalResults} results (
+            {data?.searchInformation.formattedSearchTime} seconds) for {term}
+          </p>
+          {data.items.map((item) => (
+            <div className="searchPage__results">
+              <a href={item.link}>
+                {item.pagemap?.cse_image?.length > 0 &&
+                  item.pagemap?.cse_image[0]?.src && (
+                    <img
+                      className="searchPage__resultImage"
+                      src={item.pagemap?.cse_image[0]?.src}
+                      alt=""
+                    />
+                  )}
+                {item.displayLink}
+              </a>
+              <a className="searchPage__resultTitle" href={item.link}>
+                <h2>{item.title}</h2>
+              </a>
+              <p className="searchPage__resultSnippet">{item.snippet}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
