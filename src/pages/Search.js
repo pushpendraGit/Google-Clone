@@ -8,48 +8,59 @@ import { useHistory } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
 import { actionsTypes } from "../reducer";
 
-function Search({hideButtons = false}) {
+function Search({ hideButtons=false }) {
   const [{}, dispatch] = useStateValue();
 
-    const [input, setInput] = useState('');
-    const history = useHistory();
+  const [input, setInput] = useState("");
+  const history = useHistory();
 
-    const search = (e) => {
+  const search = (e) => {
+    e.preventDefault();
 
-        e.preventDefault();
+    console.log("Your hit the seach button", input);
 
-        console.log('Your hit the seach button', input)
+    dispatch({
+      type: actionsTypes.SET_SEARCH_TERM,
+      term: input,
+    });
 
-        dispatch({
-          type:actionsTypes.SET_SEARCH_TERM,
-          term:input
-        })
-
-        history.push('/search');
-        
-
-    }
+    history.push("/search");
+  };
   return (
     <form className="search">
       <div className="search__input">
         <SearchIcon className="search__inputIcon" />
-        <input value={input} onChange={(e) => setInput(e.target.value)}/>
+        <input value={input} onChange={(e) => setInput(e.target.value)} />
         <MicIcon />
       </div>
-      {hideButtons ? <div className="search__buttons">
-        <Button type="submit" onClick={search} variant="outlined">Google Search</Button>
-        <Button type="submit" variant="outlined">I'am feeling Lucky</Button>
-      </div> : 
-      <div className="search__buttons">
-      <Button type="submit" className = 'search__buttonsHidden'
-      onClick={search} variant="outlined">Google Search</Button>
-      <Button className = 'search__buttonsHidden' type="submit" variant="outlined">I'am feeling Lucky</Button>
-    </div>
-      }
-      <div className="search__buttons">
-        <Button type="submit" onClick={search} variant="outlined">Google Search</Button>
-        <Button type="submit" variant="outlined">I'am feeling Lucky</Button>
-      </div>
+      {hideButtons ? (
+        <div className="search__buttons hide">
+          <Button
+            type="submit"
+            className="search__buttonsHidden"
+            onClick={search}
+            variant="outlined"
+          >
+            Google Search
+          </Button>
+          <Button
+            type="submit"
+            className="search__buttonsHidden"
+            variant="outlined"
+          >
+            I'am feeling Lucky
+          </Button>
+        </div>
+      ) : (
+        <div className="search__buttons">
+          <Button type="submit" onClick={search} variant="outlined">
+            Google Search
+          </Button>
+          <Button type="submit" variant="outlined">
+            I'am feeling Lucky
+          </Button>
+        </div>
+      )}
     </form>
   );
 }
