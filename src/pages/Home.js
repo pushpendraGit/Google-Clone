@@ -26,7 +26,7 @@ function Home(props) {
           alt="google lodo"
         />
         <div className="home__inputContainer">
-            <Search />
+            <Search hideButtons={false}/>
 
         </div>
       </div>
